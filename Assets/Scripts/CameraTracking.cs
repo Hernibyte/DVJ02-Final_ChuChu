@@ -7,6 +7,7 @@ public class CameraTracking : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] Vector3 position;
 
+
     void Awake()
     {
         ChangePosition();

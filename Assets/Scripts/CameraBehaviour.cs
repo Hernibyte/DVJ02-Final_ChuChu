@@ -5,8 +5,10 @@ using UnityEngine;
 public class CameraBehaviour : MonoBehaviour
 {
     [SerializeField] Transform target;
+
     Vector3 pos = new Vector3();
     Vector3 newScale = new Vector3(1, 1, 1);
+
 
     void Update()
     {
