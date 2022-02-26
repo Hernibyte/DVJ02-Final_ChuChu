@@ -7,12 +7,14 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] LayerMask terrainMask;
 
-    Vector3 endPosition;
-    Transform m_start;
+    Vector3 endPosition = new Vector3();
+    Vector3 m_start = new Vector3();
+    bool isMoving = false;
+    Timer timer = new Timer();
 
     void Start()
     {
-        m_start = transform;
+        m_start = transform.position;
         endPosition = transform.position;
     }
 
@@ -23,18 +25,27 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Move();
+        if (isMoving)
+        {
+            Move();
+            if (timer.CalcFixedTime(1))
+                isMoving = false;
+        }
     }
 
     public void MoveTo(Vector3 position)
     {
-        m_start = transform;
-        endPosition = position;
+        if (!isMoving)
+        {
+            endPosition = position;
+            m_start = transform.position;
+            isMoving = true;
+        }
     }
 
     void Move()
     {
-        transform.position = Vector3.Lerp(m_start.position, endPosition, 0.1f);
+        transform.position = Vector3.Lerp(m_start, endPosition, timer.time);
     }
 
     void PlaceTerrain()

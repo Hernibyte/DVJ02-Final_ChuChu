@@ -27,7 +27,7 @@ public class CameraGetWorldPoint : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (Physics.Raycast(ray, out hit, 10000, terrainMask))
             {
