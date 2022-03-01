@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
     void PlaceTerrain()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 50, terrainMask))
+        if (Physics.Raycast(transform.position + new Vector3(0, 100, 0), Vector3.down, out hit, 500, terrainMask))
         {
             transform.position = new Vector3(hit.point.x, hit.point.y + (transform.localScale.y / 2), hit.point.z);
         }
