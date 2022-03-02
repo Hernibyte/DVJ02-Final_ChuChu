@@ -6,6 +6,7 @@ public class CameraGetWorldPoint : MonoBehaviour
 {
     [SerializeField] LayerMask terrainMask;
     public CameraEvent e_CameraPointClick = new CameraEvent();
+    public bool isPlaying = true;
 
     Camera cam;
 
@@ -27,7 +28,7 @@ public class CameraGetWorldPoint : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && isPlaying)
         {
             if (Physics.Raycast(ray, out hit, 10000, terrainMask))
             {
