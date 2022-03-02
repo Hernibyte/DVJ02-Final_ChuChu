@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] LayerMask terrainMask;
 
+    public AnimationCurve animationCurve;
+
     Vector3 endPosition = new Vector3();
     Vector3 m_start = new Vector3();
     bool isMoving = false;
@@ -37,15 +39,18 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isMoving)
         {
-            endPosition = position;
-            m_start = transform.position;
-            isMoving = true;
+            if (Vector3.Distance(transform.position, position) < 400)
+            {
+                endPosition = position;
+                m_start = transform.position;
+                isMoving = true;
+            }
         }
     }
 
     void Move()
     {
-        transform.position = Vector3.Lerp(m_start, endPosition, timer.time);
+        transform.position = Vector3.Slerp(m_start, endPosition, animationCurve.Evaluate(timer.time));
     }
 
     void PlaceTerrain()
