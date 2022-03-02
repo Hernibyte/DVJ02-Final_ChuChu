@@ -6,13 +6,13 @@ using UnityEngine.Events;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] LayerMask terrainMask;
-
-    public AnimationCurve animationCurve;
+    [SerializeField] float movementSpeed;
+    [SerializeField] float rotationSpeed;
+    [SerializeField] float maxDistanceToPoint;
 
     Vector3 endPosition = new Vector3();
     Vector3 m_start = new Vector3();
     bool isMoving = false;
-    Timer timer = new Timer();
 
     void Start()
     {
@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
         if (isMoving)
         {
             Move();
-            if (timer.CalcFixedTime(1))
+            if (Vector3.Distance(transform.position, endPosition) < maxDistanceToPoint)
                 isMoving = false;
         }
     }
@@ -39,18 +39,20 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isMoving)
         {
-            if (Vector3.Distance(transform.position, position) < 400)
-            {
-                endPosition = position;
-                m_start = transform.position;
-                isMoving = true;
-            }
+            endPosition = position;
+            m_start = transform.position;
+            isMoving = true;
         }
     }
 
     void Move()
     {
-        transform.position = Vector3.Slerp(m_start, endPosition, animationCurve.Evaluate(timer.time));
+        transform.Translate(Vector3.forward * movementSpeed);
+        
+        Vector3 tDir = endPosition - transform.position;
+        float singleStep = rotationSpeed * Time.fixedDeltaTime;
+        Vector3 newDir = Vector3.RotateTowards(transform.forward, tDir, singleStep, 0.0f);
+        transform.rotation = Quaternion.LookRotation(newDir);
     }
 
     void PlaceTerrain()
