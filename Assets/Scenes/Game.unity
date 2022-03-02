@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 104228087}
   - component: {fileID: 104228086}
   m_Layer: 0
-  m_Name: SpawnPoints
+  m_Name: Spawn collectable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -472,7 +472,7 @@ GameObject:
   - component: {fileID: 112697736}
   - component: {fileID: 112697735}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: endgame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -911,7 +911,7 @@ GameObject:
   - component: {fileID: 226463243}
   - component: {fileID: 226463242}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: ingame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1255,10 +1255,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 721e20abc5ad64a45a0195db4adee16e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inGamePanel: {fileID: 226463240}
+  go_InGamePanel: {fileID: 226463240}
   t_Time: {fileID: 2034522566}
   t_Points: {fileID: 847623521}
-  endGamePanel: {fileID: 112697733}
+  go_EndGamePanel: {fileID: 112697733}
   t_endGamePointsCount: {fileID: 1038963664}
   t_TimeOut: {fileID: 1014929331}
   t_maxPoints: {fileID: 684692365}
@@ -5866,11 +5866,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fff7f4ea0746964e8406d37392cf21c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_cam: {fileID: 1562418122}
-  m_playerMovement: {fileID: 856772521}
-  m_playerStats: {fileID: 856772520}
+  cam: {fileID: 1562418122}
+  playerMovement: {fileID: 856772521}
+  playerStats: {fileID: 856772520}
   uIManager: {fileID: 381354074}
-  m_pointSpawnManager: {fileID: 104228086}
+  collectableSpawnManager: {fileID: 104228086}
   gameDurationTime: 60
 --- !u!1 &1941650142
 GameObject:

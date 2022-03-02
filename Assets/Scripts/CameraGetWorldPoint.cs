@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraGetWorldPoint : MonoBehaviour
 {
     [SerializeField] LayerMask terrainMask;
-    public CameraEvent e_CameraPointClick = new CameraEvent();
+    public CustomEvent_vtr3 e_CameraPointClick = new CustomEvent_vtr3();
     public bool isPlaying = true;
 
     Camera cam;

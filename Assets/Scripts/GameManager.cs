@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] CameraGetWorldPoint m_cam;
-    [SerializeField] PlayerMovement m_playerMovement;
-    [SerializeField] PlayerStats m_playerStats;
+    [SerializeField] CameraGetWorldPoint cam;
+    [SerializeField] PlayerMovement playerMovement;
+    [SerializeField] PlayerStats playerStats;
     [SerializeField] UIManager uIManager;
-    [SerializeField] PointSpawnManager m_pointSpawnManager;
+    [SerializeField] CollectableSpawnManager collectableSpawnManager;
     [SerializeField] float gameDurationTime;
 
     Timer timer = new Timer();
@@ -18,9 +18,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        m_cam.e_CameraPointClick.AddListener(m_playerMovement.MoveTo);
+        cam.e_CameraPointClick.AddListener(playerMovement.MoveTo);
         uIManager.ChangeHiddenEndGamePanel(false);
-        m_pointSpawnManager.noMorePoints.AddListener(EndGameWithPointCount);
+        collectableSpawnManager.noMorePoints.AddListener(EndGameWithPointCount);
     }
 
     void Update()
@@ -28,10 +28,10 @@ public class GameManager : MonoBehaviour
         if (playing)
         {
             uIManager.ChangeTimeText(timer.time);
-            uIManager.ChangePointsT(m_playerStats.points);
+            uIManager.ChangePointsText(playerStats.points);
             if (timer.CalcTime(gameDurationTime))
             {
-                EndGame();
+                EndGameWithoutPointCount();
             }
         }
     }
@@ -42,20 +42,20 @@ public class GameManager : MonoBehaviour
         uIManager.ChangeHiddenInGamePanel(false);
         uIManager.ChangeHiddenTimeOut(false);
         uIManager.ChangeHiddenMaxPoints(true);
-        uIManager.ChangeEndGamePointsCount(m_playerStats.points);
+        uIManager.ChangeEndGamePointsCount(playerStats.points);
 
-        m_cam.isPlaying = false;
+        cam.isPlaying = false;
         playing = false;
     }
 
-    void EndGame()
+    void EndGameWithoutPointCount()
     {
         uIManager.ChangeHiddenEndGamePanel(true);
         uIManager.ChangeHiddenInGamePanel(false);
         uIManager.ChangeHiddenMaxPoints(false);
-        uIManager.ChangeEndGamePointsCount(m_playerStats.points);
+        uIManager.ChangeEndGamePointsCount(playerStats.points);
 
-        m_cam.isPlaying = false;
+        cam.isPlaying = false;
         playing = false;
     }
 

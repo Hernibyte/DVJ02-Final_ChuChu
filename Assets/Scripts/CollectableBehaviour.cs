@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PointBehaviour : MonoBehaviour
+public class CollectableBehaviour : MonoBehaviour
 {
     [SerializeField] LayerMask pointMask;
     [SerializeField] LayerMask terrainMask;
@@ -21,21 +21,21 @@ public class PointBehaviour : MonoBehaviour
         PlaceTerrain();
     }
 
-    void PlaceTerrain()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(raycastPointPostition, Vector3.down, out hit, 500, terrainMask))
-        {
-            transform.position = new Vector3(hit.point.x, hit.point.y + (transform.localScale.y), hit.point.z);
-        }
-    }
-
     void OnTriggerEnter(Collider col)
     {
         if (MyMask.Contains(pointMask, col.gameObject.layer))
         {
             e_die?.Invoke();
             Destroy(gameObject);
+        }
+    }
+
+    void PlaceTerrain()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(raycastPointPostition, Vector3.down, out hit, 500, terrainMask))
+        {
+            transform.position = new Vector3(hit.point.x, hit.point.y + (transform.localScale.y), hit.point.z);
         }
     }
 }

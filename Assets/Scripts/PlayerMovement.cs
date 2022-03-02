@@ -11,12 +11,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float maxDistanceToPoint;
 
     Vector3 endPosition = new Vector3();
-    Vector3 m_start = new Vector3();
     bool isMoving = false;
 
     void Start()
     {
-        m_start = transform.position;
         endPosition = transform.position;
     }
 
@@ -29,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isMoving)
         {
-            Move();
+            MovePlayer();
             if (Vector3.Distance(transform.position, endPosition) < maxDistanceToPoint)
                 isMoving = false;
         }
@@ -40,12 +38,11 @@ public class PlayerMovement : MonoBehaviour
         if (!isMoving)
         {
             endPosition = position;
-            m_start = transform.position;
             isMoving = true;
         }
     }
 
-    void Move()
+    void MovePlayer()
     {
         transform.Translate(Vector3.forward * movementSpeed);
         

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PointSpawnManager : MonoBehaviour
+public class CollectableSpawnManager : MonoBehaviour
 {
     [SerializeField] int spawnAmount;
     [SerializeField] Vector2 minSpawnPosition;
@@ -23,13 +23,13 @@ public class PointSpawnManager : MonoBehaviour
     {
         for (int i = 0; i < spawnAmount; i++)
         {
-            PointBehaviour pb = Instantiate(pointSpawnPrefab, 
+            CollectableBehaviour pb = Instantiate(pointSpawnPrefab, 
                 new Vector3(
                     Random.Range(minSpawnPosition.x, maxSpawnPosition.x), 
                     0,
                     Random.Range(minSpawnPosition.y, maxSpawnPosition.y)), 
                 Quaternion.identity, 
-                transform).GetComponent<PointBehaviour>();
+                transform).GetComponent<CollectableBehaviour>();
             pb.e_die.AddListener(RestCount);
             spawnPointCount++;
         }

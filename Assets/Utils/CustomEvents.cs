@@ -3,4 +3,4 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CameraEvent : UnityEvent<Vector3> {}
+public class CustomEvent_vtr3 : UnityEvent<Vector3> {}

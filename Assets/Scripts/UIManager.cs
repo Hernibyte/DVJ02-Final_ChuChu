@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] GameObject inGamePanel;
+    [SerializeField] GameObject go_InGamePanel;
     [SerializeField] Text t_Time;
     [SerializeField] Text t_Points;
 
-    [SerializeField] GameObject endGamePanel;
+    [SerializeField] GameObject go_EndGamePanel;
     [SerializeField] Text t_endGamePointsCount;
     [SerializeField] Text t_TimeOut;
     [SerializeField] Text t_maxPoints;
@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
 
     public void ChangeHiddenInGamePanel(bool hide)
     {
-        inGamePanel.SetActive(hide);
+        go_InGamePanel.SetActive(hide);
     }
 
     public void ChangeTimeText(float time)
@@ -25,14 +25,14 @@ public class UIManager : MonoBehaviour
         t_Time.text = "TIME: " + Mathf.Round(time);
     }
 
-    public void ChangePointsT(int points)
+    public void ChangePointsText(int points)
     {
         t_Points.text = "POINTS: " + points;
     }
 
     public void ChangeHiddenEndGamePanel(bool hide)
     {
-        endGamePanel.SetActive(hide);
+        go_EndGamePanel.SetActive(hide);
     }
 
     public void ChangeEndGamePointsCount(int points)
