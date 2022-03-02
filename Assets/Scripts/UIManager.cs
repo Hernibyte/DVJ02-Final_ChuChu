@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] Text t_TimeOut;
     [SerializeField] Text t_maxPoints;
 
+    [SerializeField] GameObject go_PausePanel;
+
 
     public void ChangeHiddenInGamePanel(bool hide)
     {
@@ -48,5 +50,10 @@ public class UIManager : MonoBehaviour
     public void ChangeHiddenMaxPoints(bool hide)
     {
         t_maxPoints.gameObject.SetActive(hide);
+    }
+
+    public void ChangeHiddenPause(bool hide)
+    {
+        go_PausePanel.SetActive(hide);
     }
 }

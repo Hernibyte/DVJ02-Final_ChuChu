@@ -19,8 +19,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         cam.e_CameraPointClick.AddListener(playerMovement.MoveTo);
-        uIManager.ChangeHiddenEndGamePanel(false);
         collectableSpawnManager.noMorePoints.AddListener(EndGameWithPointCount);
+
+        uIManager.ChangeHiddenPause(false);
+        uIManager.ChangeHiddenEndGamePanel(false);
     }
 
     void Update()
@@ -57,6 +59,20 @@ public class GameManager : MonoBehaviour
 
         cam.isPlaying = false;
         playing = false;
+    }
+
+    public void Pause()
+    {
+        uIManager.ChangeHiddenPause(true);
+        Time.timeScale = 0;
+        cam.isPlaying = false;
+    }
+
+    public void Continue()
+    {
+        uIManager.ChangeHiddenPause(false);
+        Time.timeScale = 1;
+        cam.isPlaying = true;
     }
 
     public void PlayAgain()
